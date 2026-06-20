@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from glob import escape
+
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
@@ -19,6 +21,10 @@ from datetime import datetime
 @app.route('/')
 @app.route('/index/')
 def index():
+    print(url_for('index'))
+    print(url_for('hello'))
+    print(url_for('code', code='print("Hello World")'))
+
     nombre = "Juan"
     friends = ['Alice', 'Bob', 'Charlie']
     date = datetime.now()
@@ -39,3 +45,7 @@ def hello(name=None, age=None, email=None):
         'age': age,
         'email': email
     }
+
+@app.route('/code/<path:code>')
+def code(code):
+    return f'<code>{escape(code)}</code>'
