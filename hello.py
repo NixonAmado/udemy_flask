@@ -2,11 +2,33 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/index/<nombre>')
-def index(nombre):
-    friends = ['Alice', 'Bob', 'Charlie']
+#Filtros personalizados
+#@app.template_filter('today')
+def today(date):
+    return date.strftime("%d-%m-%Y")
 
-    return render_template('index.html', nombre=nombre, friends=friends )
+@app.add_template_global
+def repeat(s,n):
+    return s * n
+
+app.add_template_filter(today, "today")
+
+from datetime import datetime
+
+
+@app.route('/')
+@app.route('/index/')
+def index():
+    nombre = "Juan"
+    friends = ['Alice', 'Bob', 'Charlie']
+    date = datetime.now()
+
+    return render_template(
+        'index.html',
+        nombre=nombre,
+        friends=friends,
+        date=date
+        )
 @app.route('/')
 def hello():
     return 'Hello, World!'
