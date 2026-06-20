@@ -29,6 +29,13 @@ def index():
         friends=friends,
         date=date
         )
-@app.route('/')
-def hello():
-    return 'Hello, World!'
+@app.route('/hello')
+@app.route('/hello/<name>')
+@app.route('/hello/<name>/<int:age>/<email>')
+
+def hello(name=None, age=None, email=None):
+    my_data = {
+        'name': name,
+        'age': age,
+        'email': email
+    }
