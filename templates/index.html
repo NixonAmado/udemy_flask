@@ -7,10 +7,11 @@
 </head>
 <body>
     <h1>Bienvenido a mi sitio web {{nombre}}</h1>
-    {% if False %}
     <p>Este es un sitio web de ejemplo creado con Flask. False</p>
-    {% else %}
-    <p>Este es un sitio web de ejemplo creado con Flask. true</p>
-    {% endif %}
+    <ul>
+        {% for friend in friends %}
+        <li> {{friend}} </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
