@@ -40,11 +40,13 @@ def index():
 @app.route('/hello/<name>/<int:age>/<email>')
 
 def hello(name=None, age=None, email=None):
-    my_data = {
+    data = {
         'name': name,
         'age': age,
         'email': email
     }
+
+    return render_template('hello.html', data=data)
 
 @app.route('/code/<path:code>')
 def code(code):

@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    {% block content %}
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Inicio</a></li>
@@ -13,9 +12,11 @@
             <li><a href="{{ url_for('code', code='print(code)')}}">Código</a></li>
         </ul>
     </nav>
+    
+    {% block content %}
     <!-- Bloque de contenido -->
     {% endblock %}
 
-    <script stc="{{ url_for('static', filename = 'js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
 </body>
 </html>
